@@ -42,6 +42,7 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
     contentBase: './target/classes/static/',
     proxy: [{
       context: [
+        '/micronodb',
         '/api',
         '/services',
         '/management',

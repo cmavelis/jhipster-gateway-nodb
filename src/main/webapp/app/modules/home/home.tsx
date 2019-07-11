@@ -8,12 +8,14 @@ import { Row, Col, Alert } from 'reactstrap';
 
 import { IRootState } from 'app/shared/reducers';
 import { getSession } from 'app/shared/reducers/authentication';
+import { getGreeting } from 'app/shared/reducers/hello';
 
 export interface IHomeProp extends StateProps, DispatchProps {}
 
 export class Home extends React.Component<IHomeProp> {
   componentDidMount() {
     this.props.getSession();
+    this.props.getGreeting();
   }
 
   render() {
@@ -41,43 +43,8 @@ export class Home extends React.Component<IHomeProp> {
               </Alert>
             </div>
           )}
-          <p>If you have any question on JHipster:</p>
-
-          <ul>
-            <li>
-              <a href="https://www.jhipster.tech/" target="_blank" rel="noopener noreferrer">
-                JHipster homepage
-              </a>
-            </li>
-            <li>
-              <a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener noreferrer">
-                JHipster on Stack Overflow
-              </a>
-            </li>
-            <li>
-              <a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener noreferrer">
-                JHipster bug tracker
-              </a>
-            </li>
-            <li>
-              <a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">
-                JHipster public chat room
-              </a>
-            </li>
-            <li>
-              <a href="https://twitter.com/java_hipster" target="_blank" rel="noopener noreferrer">
-                follow @java_hipster on Twitter
-              </a>
-            </li>
-          </ul>
-
-          <p>
-            If you like JHipster, do not forget to give us a star on{' '}
-            <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">
-              Github
-            </a>
-            !
-          </p>
+          <p>Here's my stuff:</p>
+          <div>{this.props.greeting}</div>
         </Col>
         <Col md="3" className="pad">
           <span className="hipster rounded" />
@@ -89,10 +56,11 @@ export class Home extends React.Component<IHomeProp> {
 
 const mapStateToProps = storeState => ({
   account: storeState.authentication.account,
-  isAuthenticated: storeState.authentication.isAuthenticated
+  isAuthenticated: storeState.authentication.isAuthenticated,
+  greeting: storeState.hello.greeting
 });
 
-const mapDispatchToProps = { getSession };
+const mapDispatchToProps = { getSession, getGreeting };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
