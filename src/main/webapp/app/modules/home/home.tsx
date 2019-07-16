@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Row, Col, Alert } from 'reactstrap';
 
-import { IRootState } from 'app/shared/reducers';
 import { getSession } from 'app/shared/reducers/authentication';
 import { getGreeting } from 'app/shared/reducers/hello';
 
@@ -57,7 +56,7 @@ export class Home extends React.Component<IHomeProp> {
 const mapStateToProps = storeState => ({
   account: storeState.authentication.account,
   isAuthenticated: storeState.authentication.isAuthenticated,
-  greeting: storeState.hello.greeting
+  greeting: storeState.hello.greeting.response
 });
 
 const mapDispatchToProps = { getSession, getGreeting };

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { FAILURE, REQUEST, SUCCESS } from 'app/shared/reducers/action-type.util';
 import { SERVER_API_URL } from 'app/config/constants';
+import { IHello } from 'app/shared/model/hello.model';
 
 export const ACTION_TYPES = {
   FETCH_GREETING: 'hello/FETCH_GREETING'
@@ -49,6 +50,6 @@ export default (state = initialState, action) => {
 export const getGreeting = () => async (dispatch, getState) => {
   dispatch({
     type: ACTION_TYPES.FETCH_GREETING,
-    payload: axios.get('micronodb/api/hello/greeting')
+    payload: axios.get<IHello>('services/micronodb/api/hello/greeting')
   });
 };
